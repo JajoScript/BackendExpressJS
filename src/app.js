@@ -2,6 +2,7 @@
 const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
 const express = require("express");
+const logger = require("morgan");
 const path = require("path");
 
 // Importación de rutas.
@@ -14,12 +15,13 @@ require("dotenv").config();
 const app = express();
 
 // Middlewares.
+app.use(logger("tiny"));
 app.use(cookieParser());
 app.use(express.json());
-
-// Cargando los templates.
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Cargando los templates.
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
@@ -48,3 +50,5 @@ app.listen(port, () => {
     console.log(`[INFO] http://localhost:${port}`);
     console.log(`[INFO] http://${ip}:${port}`);
 });
+
+module.exports = app;
