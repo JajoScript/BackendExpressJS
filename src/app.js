@@ -1,6 +1,7 @@
 // Depenencias.
-const express = require("express");
 const cookieParser = require("cookie-parser");
+const createError = require("http-errors");
+const express = require("express");
 const path = require("path");
 
 // Importación de rutas.
@@ -24,6 +25,19 @@ app.set("view engine", "pug");
 
 // Controlador de rutas.
 app.use('/', indexRouter);
+
+// Control de errores.
+app.use((request, response, next) => {
+    next(createError(404));
+});
+
+app.use( (error, request, response, next) => {
+    response.locals.message = error.message;
+    response.locals.error = error;
+
+    response.status(error.status || 500);
+    response.render("error");
+});
 
 // Server.
 const port = (process.env.PORT || 3001);
