@@ -4,7 +4,9 @@ const router = express.Router();
 
 // Peticiones.
 router.get('/', (request, response, next) => {
-    response.render("index", { title: "Main" });
+    console.log(request);
+
+    response.render("index", { title: request.query.user });
 });
 
 router.post('/', (request, response, next) => {
@@ -20,7 +22,8 @@ router.patch('/', (request, response, next) => {
 });
 
 router.delete('/', (request, response, next) => {
-    response.send("[DELETE] request");
+    username = request.query.user
+    response.send(`Se elimino el usuario: ${username}`);
 });
 
 router.options('/', (request, response, next) => {

@@ -16,5 +16,13 @@
     "http-errors": "^1.8.0",
     "morgan": "^1.10.0",
     "pug": "^3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JajoScript/BackendExpressJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JajoScript/BackendExpressJS/issues"
+  },
+  "homepage": "https://github.com/JajoScript/BackendExpressJS#readme"
 }
